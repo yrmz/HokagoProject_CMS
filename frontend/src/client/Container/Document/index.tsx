@@ -1,16 +1,17 @@
 import React from 'react';
+import Layout from 'client/Component/Layout/private';
 
 // Type層
 
 // DOM層
-const Componet: React.FC = props => {
-    return <>
+const Component: React.FC = props => {
+    return <Layout>
         <h1>Document List</h1>
-    </>
+    </Layout>
 }
 
 //Style層
 
 //Container層
 
-export default Componet;
+export default Component;

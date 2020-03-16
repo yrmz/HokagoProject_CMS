@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from 'client/Component/Layout';
+import Router from 'client/Container/Router';
 
 function App() {
   return (
     <div>
-      <Layout />
+      <Router />
     </div>
   );
 }
