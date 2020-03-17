@@ -1,14 +1,19 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, useLocation } from 'react-router-dom';
 
 type Props = {
     auth: boolean,
+    exact?: boolean,
     path: string,
-    component: React.FC
 };
 
 const Component: React.FC<Props> = props => {
-    return props.auth ? <Route exact path={props.path} component={props.component} /> : <Redirect to="/login" />
+
+    if (props.auth) {
+        return <Route exact={props.exact} path={props.path}>{props.children}</Route>
+    } else {
+        return <Redirect to="/login" />
+    }
 }
 
 export default Component;

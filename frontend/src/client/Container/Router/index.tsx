@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import PrivateRoute from 'client/Container/Router/privateRoute';
 import PublicRoute from 'client/Container/Router/publicRoute';
@@ -20,16 +20,18 @@ type Props = {
 // DOM層
 const Component: React.FC<Props> = props => {
     return <div>
-        <Router>
-            <Suspense fallback={<>Loading...</>}>
+        <Suspense fallback={<>Loading...</>}>
+            <Router>
                 <Authentication auth={props.auth} setAuth={props.setAuth}>
-                    <PublicRoute auth={props.auth} path="/login" component={Login} />
-                    <PrivateRoute auth={props.auth} path="/" component={Document} />
-                    <PrivateRoute auth={props.auth} path="/document" component={Document} />
-                    <PrivateRoute auth={props.auth} path="/Setting" component={Setting} />
+                    <Switch>
+                        <PrivateRoute exact={true} auth={props.auth} path="/"><Document /></PrivateRoute>
+                        <PublicRoute auth={props.auth} path="/login"><Login /></PublicRoute>
+                        <PrivateRoute auth={props.auth} path="/document" ><Document /></PrivateRoute>
+                        <PrivateRoute auth={props.auth} path="/Setting" ><Setting /></PrivateRoute>
+                    </Switch>
                 </Authentication>
-            </Suspense>
-        </Router>
+            </Router>
+        </Suspense>
     </div>
 }
 
