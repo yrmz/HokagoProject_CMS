@@ -13,7 +13,7 @@ const Container: React.FC<ContainerProps> = props => {
         if (authtoken) {
             //axiosで認証監視API叩く(有効期限もチエック)
             const result = true;
-            
+
             if (result) {
                 props.setAuth(true);
             }
